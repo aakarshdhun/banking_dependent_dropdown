@@ -1,0 +1,327 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Form</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+
+  <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <!-- Favicon -->
+<!--  <link href="{% static 'img/favicon.icon' %}"  rel="icon">-->
+
+  <!-- Google Fonts -->
+<!--  <link href="{% static 'https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900' %}" rel="stylesheet">-->
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- =======================================================
+    Theme Name: Bell
+    Theme URL: https://bootstrapmade.com/bell-free-bootstrap-4-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+
+</head>
+
+<body>
+  <!-- Page Content
+    ================================================== -->
+  <!-- Hero -->
+
+  <section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+<!--          <a class="hero-brand" href="index.html" title="Home"><img alt="XXX Bank" src="{% static 'img/logo.png' %}"></a>-->
+        <h3 class="hero-brand"> XXX BANK</h3>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <h1>
+            We Take Care Of Your Money
+          </h1>
+
+        <p class="tagline">
+          We Have The Best Solutions For Your Business To Grow, Choose The Right Account For You.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+<!--        <a href="index.html"><img src="{% static 'img/logo-nav.png' %}" alt="" title="" /></img></a>-->
+        <!-- Uncomment below if you prefer to use a text image -->
+        <h1><a href="#hero">XXX Bank</a></h1>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="{% url 'home' %}">Home</a></li>
+<!--          <li><a href="#about">About Us</a></li>-->
+          {% if user.is_authenticated %}
+
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+          <li class="menu-has-children" style="color:white"><a>Branches</a>
+
+            <ul>
+               <li><a href="https://en.wikipedia.org/wiki/Thrissur">Thrissur </a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Ernakulam">Ernakulam </a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Palakkad">Palakkad </a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Kozhikode">Calicut </a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Thiruvananthapuram">Trivandrum </a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- #nav-menu-container -->
+
+      <nav class="nav social-nav pull-right d-none d-lg-inline">
+        {% if user.is_authenticated %}
+          <b style="color:white">Hello {{user.username}}</b>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+<section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Fill in Details</h2>
+            <br>
+            <br>
+<!--            {% for msg in messages %}-->
+<!--            {{msg}}-->
+<!--            {% endfor %}-->
+
+        </div>
+      </div>
+      <div class="row justify-content-center">
+<div class="col-lg-5 col-md-8">
+          <div class="form">
+               <form action="{% url 'process' %}" method="post">
+            {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name" class="form-control" style="background-color:Lavender">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob" class="form-control" style="background-color:Lavender">Date of birth</label>
+                        <input type="date" class="form-control" name="dob" id="dob" placeholder="Your date of birth"  required/>
+                     </div>
+                    <div class="form-group">
+                        <label for="age" class="form-control" style="background-color:Lavender">Age</label>
+                        <input type="number" class="form-control" name="age" id="age" placeholder="Your Age" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control" style="background-color:Lavender">Gender</label>
+                        <div class="form-control" >  <label for="male" >Male</label> &nbsp
+                            <input type="radio" name="gender" id="male" value="male" required/>&nbsp
+                            <label for="female" >Female</label>&nbsp
+                            <input type="radio"  name="gender" id="female" value="male" />&nbsp
+                            <label for="others">Others</label>&nbsp
+                            <input type="radio" name="gender" id="others" value="male" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number" class="form-control" style="background-color:Lavender" >Phone Number</label>
+                        <input type="text" class="form-control" name="phone" id="phone_number" placeholder="+91" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-control" style="background-color:Lavender">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="form-control" style="background-color:Lavender">Address</label>
+                        <textarea class="form-control" name="address" id="address" rows="5" placeholder="address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-control" style="background-color:Lavender">Choose District</label>
+
+                        <select name="dist" id="district" class="form-control" required >
+                            <option value=""  >--Select District--</option>
+                            {% for item in district  %}
+                            <option value="{{ item.id }}" >{{ item.district }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <br/>
+                    <div class="form-group">
+                        <label for="branch" class="form-control" style="background-color:Lavender">Choose Branch</label>
+
+                        <select name="branc" id="branch" class="form-control" required>
+                            <option value="" >--Select Branch--</option>
+                            {% for item in branch  %}
+                            <option value="{{ item.distid_id }}">{{ item.branch }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control" style="background-color:Lavender">Choose Account Type</label>
+
+                        <select class="form-control" name="acc_type" required>
+                       <option value="">--Select Account Type--</option>
+
+                        <option value="savings">Savings Account</option>
+                        <option value="savings">Current Account</option>
+                         <option value="savings">Salary Account</option>
+                            <option value="savings">Joint Account</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control" style="background-color:Lavender" > Materials Provided</label><br>
+                        <div class="form-control">
+                            <input  type="checkbox" id="credit" name="credit" value="credit" >
+                            <label  for="Credit"> Credit card</label>&nbsp &nbsp &nbsp
+                            <input  type="checkbox" id="debit" name="debit" value="debit" >
+                            <label  for="debit"> Debit Card</label>&nbsp &nbsp &nbsp
+                            <input type="checkbox" id="cheque" name="cheque" value="cheque" >
+                            <label  for="cheque"> Cheque</label><br>
+                        </div>
+                    </div>
+                    <div class="text-center"><button type="submit">Submit</button></div>
+                        <br>
+                         <br>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  <script>
+
+$(document).ready(function(){
+
+ var district = $("#district");
+ var branch = $("#branch");
+ var $options = branch.find('option');
+ district.on('change',function(){
+    branch.html($options.filter('[value="'+ this.value  +'"]'));
+ }).trigger('change');
+
+
+});
+</script>
+<script>
+$(document).ready(function () {
+    $('button').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if(!checked) {
+        alert("Please select atleast one checkbox of Materials Provided to submit your application.");
+        return false;
+      }
+
+    });
+});
+</script>
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
+            <p class="copyright-text">
+              © XXX Bank
+            </p>
+            <div class="credits">
+              <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bell
+              -->
+             <a href="#">All rightsRecieved</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-xs-12 text-lg-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="{% url 'home' %}">Home</a>
+              </li>
+
+<!--              <li class="list-inline-item">-->
+<!--                <a href="#about">About Us</a>-->
+<!--              </li>-->
+
+              <li class="list-inline-item">
+                <a href="{% url 'login' %}">Login</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="{% url 'register' %}">Register</a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
+
+  <!-- Required JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/tether/js/tether.min.js' %}"></script>
+  <script src="{% static 'lib/stellar/stellar.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.js' %}"></script>
+  <script src="{% static 'lib/stickyjs/sticky.js' %}"></script>
+  <script src="{% static 'lib/parallax/parallax.js' %}"></script>
+  <script src="{% static 'lib/lockfixed/lockfixed.min.js' %}"></script>
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="{% static 'js/custom.js' %}"></script>
+
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+</body>
+</html>
+
